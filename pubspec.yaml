@@ -15,6 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   lottie: ^3.1.2
+  firebase_core:
 
 dev_dependencies:
   flutter_test:

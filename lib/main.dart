@@ -1,11 +1,26 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'src/frontend/home.dart';
 import 'src/frontend/navigation_menu.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: "AIzaSyAPwDazoMJq3VZhRiKzXaE8QC025vTUBtg",
+            appId: "1:101001326959:web:d4b9817a39c8d67f07389a",
+            messagingSenderId: "101001326959",
+            projectId: "simplyput-flutter"));
+  } else {
+    Firebase.initializeApp();
+  }
+
   runApp(MyApp());
 }
 

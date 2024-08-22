@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simplyputapp/src/frontend/home.dart';
+import 'package:simplyputapp/src/frontend/profile.dart';
+import 'package:simplyputapp/src/frontend/books.dart';
 
 class NavigationMenu extends StatefulWidget {
   const NavigationMenu({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class _NavigationMenuState extends State<NavigationMenu> {
   int _pageIndex = 0;
   final List<Widget> _tabList = [
     const Home(),
+    const Book(),
+    const Profile(),
   ];
 
   @override

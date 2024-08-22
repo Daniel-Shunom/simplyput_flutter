@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "101001326959",
+    "project_id": "simplyput-flutter",
+    "storage_bucket": "simplyput-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101001326959:android:a8964d266f0b6a4c07389a",
+        "android_client_info": {
+          "package_name": "com.example.simplyputapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPpeyFCeLyHvIzhyIwabIDa1K___Abdi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
