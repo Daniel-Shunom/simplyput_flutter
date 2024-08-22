@@ -15,7 +15,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
   final List<Widget> _tabList = [
     const Home(),
     const Book(),
-    const Profile(),
+    const UserProfile(),
   ];
 
   @override

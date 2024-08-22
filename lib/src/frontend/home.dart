@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 
 void main() {
@@ -71,7 +72,78 @@ class HomePage extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5))),
-                          onPressed: () {},
+                          onPressed: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext) {
+                                  return SizedBox(
+                                      height: 300,
+                                      child: Row(
+                                        children: [
+                                          //this container hold the select upload option icons
+                                          Container(
+                                            margin: EdgeInsets.only(
+                                                left: 10, top: 5),
+                                            child: Column(
+                                              //select file
+                                              children: [
+                                                ClipRRect(
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                50)),
+                                                    child: Row(
+                                                      children: [
+                                                        ElevatedButton(
+                                                            onPressed: () {},
+                                                            child: const Icon(Icons
+                                                                .phone_android))
+                                                      ],
+                                                    )),
+
+                                                //open camera
+                                                ClipRRect(
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                50)),
+                                                    child: Row(
+                                                      children: [
+                                                        ElevatedButton(
+                                                            onPressed: () {},
+                                                            child: const Icon(
+                                                                Icons
+                                                                    .camera_alt))
+                                                      ],
+                                                    )),
+                                              ],
+                                            ),
+                                          ),
+
+                                          Expanded(child: SizedBox()),
+
+                                          //close menu
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  ElevatedButton(
+                                                    child:
+                                                        const Icon(Icons.close),
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ));
+                                });
+                          },
                           child: Text("upload documents")),
                       SizedBox(
                         height: 10,
