@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
+import 'package:simplyputapp/src/frontend/onboarding_screens/onboarding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

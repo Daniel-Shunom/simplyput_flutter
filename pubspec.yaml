@@ -17,6 +17,11 @@ dependencies:
   lottie: ^3.1.2
   firebase_core:
   profile: ^0.0.1
+  smooth_page_indicator: ^1.2.0+3
+  get: ^4.6.6
+  modular_ui: ^0.0.5
+  flutter_svg: ^2.0.10+1
+  flashy_tab_bar2: ^0.0.10
 
 dev_dependencies:
   flutter_test:

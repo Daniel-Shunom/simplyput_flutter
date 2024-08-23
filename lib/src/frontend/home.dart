@@ -1,6 +1,12 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
+import 'package:modular_ui/modular_ui.dart';
+import 'package:simplyputapp/src/components/my_drawer.dart';
+import 'package:simplyputapp/src/frontend/profile_page.dart';
+import 'package:simplyputapp/src/frontend/signout_page.dart';
 
 void main() {
   runApp(const Home());
@@ -24,20 +30,42 @@ class Home extends StatelessWidget {
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  void goToProfilePage() {
+    //pop menu drawer
+    Navigator.pop(context as BuildContext);
+
+    //go to profile page
+    Navigator.push(context as BuildContext,
+        MaterialPageRoute(builder: (context) => UserProfile()));
+  }
+
+  void goToSignOutPage() {
+    //pop menu drawer
+    Navigator.pop(context as BuildContext);
+
+    //go to profile page
+    Navigator.push(context as BuildContext,
+        MaterialPageRoute(builder: (context) => SignOutPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 179, 203, 255),
       appBar: AppBar(
-        title: const Text('S I M P L Y  P U T'),
-        backgroundColor: Colors.amber.shade100,
+        backgroundColor: Colors.grey.shade600,
       ),
-      drawer: const Drawer(),
+      backgroundColor: const Color.fromARGB(255, 179, 203, 255),
+      drawer: MyDrawer(
+        onProfileTap: goToProfilePage,
+        onSignOutTap: goToSignOutPage,
+      ),
       drawerEnableOpenDragGesture: true,
       body: Container(
         color: Color.fromARGB(255, 15, 31, 65),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 30),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 35,
+          ),
           //BUTTONS
           child: Column(
             //MODIFY THE BUTOTNS HERE!!
@@ -46,128 +74,17 @@ class HomePage extends StatelessWidget {
               //ANIMATED SVG
               Expanded(
                   child: ListView(children: [
-                Container(
-                  width: 350,
-                  height: 200,
-                  decoration: BoxDecoration(
-                      color: Color(0xffffb347),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Color(0xffff6961),
-                            spreadRadius: 1,
-                            blurRadius: 8,
-                            offset: Offset(2, 2))
-                      ]),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        width: 80,
-                        height: 60,
-                        child: LottieBuilder.asset(
-                            "assets/app_assets/upload.json"),
-                      ),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5))),
-                          onPressed: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext) {
-                                  return SizedBox(
-                                      height: 300,
-                                      child: Row(
-                                        children: [
-                                          //this container hold the select upload option icons
-                                          Container(
-                                            margin: EdgeInsets.only(
-                                                left: 10, top: 5),
-                                            child: Column(
-                                              //select file
-                                              children: [
-                                                ClipRRect(
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                50)),
-                                                    child: Row(
-                                                      children: [
-                                                        ElevatedButton(
-                                                            onPressed: () {},
-                                                            child: const Icon(Icons
-                                                                .phone_android))
-                                                      ],
-                                                    )),
-
-                                                //open camera
-                                                ClipRRect(
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                50)),
-                                                    child: Row(
-                                                      children: [
-                                                        ElevatedButton(
-                                                            onPressed: () {},
-                                                            child: const Icon(
-                                                                Icons
-                                                                    .camera_alt))
-                                                      ],
-                                                    )),
-                                              ],
-                                            ),
-                                          ),
-
-                                          Expanded(child: SizedBox()),
-
-                                          //close menu
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  ElevatedButton(
-                                                    child:
-                                                        const Icon(Icons.close),
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ));
-                                });
-                          },
-                          child: Text("upload documents")),
-                      SizedBox(
-                        height: 10,
-                      )
+                const SizedBox(height: 60),
+                MUIPrimaryCard(
+                    title: "Files",
+                    description: "",
+                    buttons: [
+                      MUIGradientButton(text: "Upload", onPressed: () {})
                     ],
-                  ),
-                ),
+                    image: Icon(Icons.upload_file_rounded)),
                 const SizedBox(height: 20),
-                Container(
-                    width: 350,
-                    height: 200,
-                    decoration: BoxDecoration(
-                        color: Color(0xffffb347),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
-                          BoxShadow(
-                              color: Color(0xffff6961),
-                              spreadRadius: 1,
-                              blurRadius: 8,
-                              offset: Offset(2, 2))
-                        ])),
-                const SizedBox(
-                  height: 20,
-                ),
+                MUISimpleCard(title: "Follow us!", description: "description"),
+                const SizedBox(height: 20),
                 Container(
                     width: 350,
                     height: 200,
@@ -234,6 +151,21 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 80,
+      height: 60,
+      child: LottieBuilder.asset("assets/app_assets/upload.json"),
     );
   }
 }

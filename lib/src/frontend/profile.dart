@@ -12,6 +12,10 @@ class _nameState extends State<UserProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('S I M P L Y  P U T'),
+        backgroundColor: Colors.amber.shade100,
+      ),
       body: Center(
           child: Profile(
         imageUrl:
