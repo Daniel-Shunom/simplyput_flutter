@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
@@ -8,28 +6,16 @@ import 'package:simplyputapp/src/components/my_drawer.dart';
 import 'package:simplyputapp/src/frontend/profile_page.dart';
 import 'package:simplyputapp/src/frontend/signout_page.dart';
 
-void main() {
+/*void main() {
   runApp(const Home());
-}
+}*/
 
-class Home extends StatelessWidget {
-  const Home({super.key});
-
+class HomePage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SimplyPut',
-      theme: ThemeData(
-        primaryColor: Colors.amber.shade100,
-      ),
-      home: const HomePage(),
-    );
-  }
+  _HomePageState createState() => _HomePageState();
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
+class _HomePageState extends State<HomePage> {
   void goToProfilePage() {
     //pop menu drawer
     Navigator.pop(context as BuildContext);

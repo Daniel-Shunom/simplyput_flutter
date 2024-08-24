@@ -3,36 +3,43 @@ import 'package:flutter/material.dart';
 import 'src/frontend/home.dart';
 import 'src/frontend/navigation_menu.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'src/app.dart';
 import 'src/settings/settings_controller.dart';
 import 'src/settings/settings_service.dart';
 import 'package:simplyputapp/src/frontend/onboarding_screens/onboarding.dart';
+import 'package:simplyputapp/src/frontend/login_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
-  if (kIsWeb) {
+  /*if (kIsWeb) {
     await Firebase.initializeApp(
-        options: const FirebaseOptions(
+      options: DefaultFirebaseOptions
+          .currentPlatform, /*(
             apiKey: "AIzaSyAPwDazoMJq3VZhRiKzXaE8QC025vTUBtg",
             appId: "1:101001326959:web:d4b9817a39c8d67f07389a",
             messagingSenderId: "101001326959",
-            projectId: "simplyput-flutter"));
+            projectId: "simplyput-flutter")*/
+    );
   } else {
     Firebase.initializeApp();
-  }
+  }*/
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NavigationMenu(),
+      home: LoginPage(),
     );
   }
 }

@@ -15,7 +15,7 @@ class NavigationMenu extends StatefulWidget {
 class _NavigationMenuState extends State<NavigationMenu> {
   int _selectedIndex = 0;
   final List<Widget> tabItems = [
-    const Home(),
+    HomePage(),
     const Homework(),
     const Book(),
     const UserProfile(),

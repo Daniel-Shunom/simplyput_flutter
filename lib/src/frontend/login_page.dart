@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:modular_ui/modular_ui.dart';
+import 'package:simplyputapp/src/frontend/signup_page.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+class LoginPage extends StatelessWidget {
+  final loginEmailController = TextEditingController();
+  final loginPasswordController = TextEditingController();
+
+  LoginPage({
+    super.key,
+  });
+
+  //sign user in
+  void signUserIn() async {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: MUISignInCard(
-            emailController: emailController,
-            passwordController: passwordController,
-            onSignInPressed: () {},
-            onRegisterNow: () {}));
+        body: SafeArea(
+      child: Center(
+        child: MUISignInCard(
+          emailController: loginEmailController,
+          passwordController: loginPasswordController,
+          onSignInPressed: () async {
+            signUserIn;
+          },
+          onRegisterNow: () {},
+        ),
+      ),
+    ));
   }
 }
