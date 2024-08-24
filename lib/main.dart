@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:simplyputapp/src/frontend/auth_page.dart';
 import 'src/frontend/home.dart';
 import 'src/frontend/navigation_menu.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,9 +38,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: AuthPage(),
     );
   }
 }
