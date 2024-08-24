@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modular_ui/modular_ui.dart';
+import 'package:simplyputapp/src/components/home_bottom_sheet.dart';
 import 'package:simplyputapp/src/components/my_drawer.dart';
 import 'package:simplyputapp/src/frontend/profile_page.dart';
 import 'package:simplyputapp/src/frontend/signout_page.dart';
@@ -65,7 +66,11 @@ class _HomePageState extends State<HomePage> {
                     title: "Files",
                     description: "",
                     buttons: [
-                      MUIGradientButton(text: "Upload", onPressed: () {})
+                      MUIGradientButton(
+                          text: "Upload",
+                          onPressed: () {
+                            HomeUploadSheet();
+                          })
                     ],
                     image: Icon(Icons.upload_file_rounded)),
                 const SizedBox(height: 20),
