@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modular_ui/modular_ui.dart';
-import 'package:simplyputapp/src/components/home_bottom_sheet.dart';
 import 'package:simplyputapp/src/components/my_drawer.dart';
 import 'package:simplyputapp/src/frontend/profile_page.dart';
 import 'package:simplyputapp/src/frontend/signout_page.dart';
@@ -36,6 +35,39 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void _showUploadSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 400,
+          child: Center(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                        child: Icon(Icons.close),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                MUIGradientBlockButton(text: "Camera", onPressed: () {}),
+                SizedBox(height: 20),
+                MUIOutlinedBlockButton(text: "choose files", onPressed: () {}),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                       MUIGradientButton(
                           text: "Upload",
                           onPressed: () {
-                            HomeUploadSheet();
+                            _showUploadSheet(context);
                           })
                     ],
                     image: Icon(Icons.upload_file_rounded)),
