@@ -1,7 +1,9 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modular_ui/modular_ui.dart';
+import 'package:open_file/open_file.dart';
 import 'package:simplyputapp/src/components/my_drawer.dart';
 import 'package:simplyputapp/src/frontend/profile_page.dart';
 import 'package:simplyputapp/src/frontend/signout_page.dart';
@@ -34,6 +36,12 @@ class _HomePageState extends State<HomePage> {
         MaterialPageRoute(builder: (context) => SignOutPage()));
   }
 
+  //open a file
+  void openFile(PlatformFile file) {
+    //set linuxByProcess to false and linuxUsegio to true
+    OpenFile.open(file.path, linuxByProcess: false, linuxUseGio: true);
+  }
+
   @override
   void _showUploadSheet(BuildContext context) {
     showModalBottomSheet(
@@ -58,8 +66,22 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 MUIGradientBlockButton(text: "Camera", onPressed: () {}),
-                SizedBox(height: 20),
-                MUIOutlinedBlockButton(text: "choose files", onPressed: () {}),
+                const SizedBox(height: 20),
+                MUIOutlinedBlockButton(
+                    text: "choose files",
+                    onPressed: () async {
+                      final FilePickerResult? pickedFile =
+                          await FilePicker.platform.pickFiles(
+                              allowMultiple: true,
+                              allowCompression: true,
+                              type: FileType.custom,
+                              allowedExtensions: ['pdf', 'txt']);
+                      if (pickedFile == null) return;
+                      print(pickedFile);
+
+                      final file = pickedFile.files.first;
+                      openFile(file);
+                    }),
               ],
             ),
           ),

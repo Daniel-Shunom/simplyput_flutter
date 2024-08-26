@@ -17,19 +17,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  /*if (kIsWeb) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions
-          .currentPlatform, /*(
-            apiKey: "AIzaSyAPwDazoMJq3VZhRiKzXaE8QC025vTUBtg",
-            appId: "1:101001326959:web:d4b9817a39c8d67f07389a",
-            messagingSenderId: "101001326959",
-            projectId: "simplyput-flutter")*/
-    );
-  } else {
-    Firebase.initializeApp();
-  }*/
-
   runApp(const MyApp());
 }
 
