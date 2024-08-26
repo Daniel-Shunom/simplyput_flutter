@@ -7,6 +7,7 @@ import 'package:open_file/open_file.dart';
 import 'package:simplyputapp/src/components/my_drawer.dart';
 import 'package:simplyputapp/src/frontend/profile_page.dart';
 import 'package:simplyputapp/src/frontend/signout_page.dart';
+import 'package:simplyputapp/src/backend/doc_pickers.dart';
 
 /*void main() {
   runApp(const Home());
@@ -46,7 +47,8 @@ class _HomePageState extends State<HomePage> {
   void _showUploadSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) {
+      builder: (BuildContext context,
+          {VoidCallback? onCameraTap, VoidCallback? onChooseFileTap}) {
         return SizedBox(
           height: 400,
           child: Center(
@@ -70,17 +72,7 @@ class _HomePageState extends State<HomePage> {
                 MUIOutlinedBlockButton(
                     text: "choose files",
                     onPressed: () async {
-                      final FilePickerResult? pickedFile =
-                          await FilePicker.platform.pickFiles(
-                              allowMultiple: true,
-                              allowCompression: true,
-                              type: FileType.custom,
-                              allowedExtensions: ['pdf', 'txt']);
-                      if (pickedFile == null) return;
-                      print(pickedFile);
-
-                      final file = pickedFile.files.first;
-                      openFile(file);
+                      pickFiles();
                     }),
               ],
             ),
