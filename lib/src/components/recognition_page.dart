@@ -38,6 +38,7 @@ class _RecognizePageState extends State<RecognizePage> {
           : Container(
               padding: const EdgeInsets.all(20),
               child: TextFormField(
+                maxLines: MediaQuery.of(context).size.height.toInt(),
                 controller: _ocrController,
                 decoration:
                     const InputDecoration(hintText: "Text goes at this spot"),
@@ -46,7 +47,14 @@ class _RecognizePageState extends State<RecognizePage> {
     );
   }
 
-  void processImage(InputImage image) {
+  // Google OCR function works here
+  void processImage(InputImage image) async {
+    final imgTextRecognizer =
+        TextRecognizer(script: TextRecognitionScript.latin);
+    final RecognizedText imgRecognizedText =
+        await imgTextRecognizer.processImage(image);
+
+    _ocrController.text = imgRecognizedText.text;
     setState(() {
       _isBusy = true;
     });
