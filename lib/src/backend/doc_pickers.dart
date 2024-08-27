@@ -1,22 +1,48 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:open_file/open_file.dart';
+import 'package:image_picker/image_picker.dart';
 
-//Pick files from
-void pickFiles() async {
-  //open the file
+// Pick files from file browser
+Future<String?> pickFiles() async {
+  // Open the file
   void openFile(PlatformFile file) {
-    //set linuxByProcess to false and linuxUsegio to true
-    OpenFile.open(file.path, linuxByProcess: false, linuxUseGio: true);
+    // Set linuxByProcess to false and linuxUsegio to true
+    OpenFile.open(file.path!, linuxByProcess: false, linuxUseGio: true);
   }
 
   final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-      allowCompression: true,
-      type: FileType.custom,
-      allowedExtensions: ['pdf', 'txt']);
-  if (pickedFile == null) return;
-  print(pickedFile);
+    allowMultiple: true,
+    allowCompression: true,
+    type: FileType.any, /*allowedExtensions: ['pdf', 'txt']*/
+  );
 
-  final file = pickedFile.files.first;
-  openFile(file);
+  if (pickedFile != null) {
+    final file = pickedFile.files.first;
+    print(file.path);
+    openFile(file);
+    return file.path;
+  }
+
+  return null;
+}
+
+//use camera function to get image files live
+Future<String> pickImage() async {
+  final imgPicker = ImagePicker();
+
+  String imgpath = '';
+
+  try {
+    final getImage = await imgPicker.pickImage(source: ImageSource.camera);
+
+    if (getImage != null) {
+      imgpath = getImage.path;
+    } else {
+      imgpath = '';
+    }
+  } catch (e) {
+    print(e.toString());
+  }
+
+  return imgpath;
 }

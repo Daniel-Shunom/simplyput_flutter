@@ -1,10 +1,14 @@
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modular_ui/modular_ui.dart';
 import 'package:open_file/open_file.dart';
+import 'package:simplyputapp/src/backend/image_cropper.dart';
 import 'package:simplyputapp/src/components/my_drawer.dart';
+import 'package:simplyputapp/src/components/recognition_page.dart';
 import 'package:simplyputapp/src/frontend/profile_page.dart';
 import 'package:simplyputapp/src/frontend/signout_page.dart';
 import 'package:simplyputapp/src/backend/doc_pickers.dart';
@@ -67,12 +71,37 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                MUIGradientBlockButton(text: "Camera", onPressed: () {}),
+                MUIGradientBlockButton(
+                    text: "Camera",
+                    onPressed: () {
+                      pickImage().then((value) {
+                        if (value != '') {
+                          imgCropperView(value, context).then((value) {
+                            if (value != '') {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => RecognizePage(
+                                            imgpath: value,
+                                          )));
+                            }
+                          });
+                        }
+                      });
+                    }),
                 const SizedBox(height: 20),
                 MUIOutlinedBlockButton(
                     text: "choose files",
                     onPressed: () async {
-                      pickFiles();
+                      pickFiles().then((value) {
+                        if (value != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) =>
+                                      RecognizePage(imgpath: value)));
+                        }
+                      });
                     }),
               ],
             ),
