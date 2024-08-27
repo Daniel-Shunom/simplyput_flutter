@@ -43,6 +43,6 @@ Future<String> imgCropperView(String? path, BuildContext context) async {
     return croppedFile.path;
   } else {
     print("did nothing");
-    return croppedFile!.path;
+    return '';
   }
 }
