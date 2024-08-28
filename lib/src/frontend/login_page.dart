@@ -81,15 +81,22 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Center(
-        child: MUISignInCard(
-          emailController: loginEmailController,
-          passwordController: loginPasswordController,
-          onSignInPressed: () async {
-            signUserIn();
-          },
-          onRegisterNow: () {},
+        body: Center(
+      child: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Colors.orange.shade200,
+          Colors.red.shade200,
+        ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+        child: Center(
+          child: MUISignInCard(
+            emailController: loginEmailController,
+            passwordController: loginPasswordController,
+            onSignInPressed: () async {
+              signUserIn();
+            },
+            onRegisterNow: () {},
+          ),
         ),
       ),
     ));

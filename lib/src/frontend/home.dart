@@ -114,16 +114,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade600,
+        toolbarHeight: 70,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0xffff6961),
+                  spreadRadius: 1,
+                  blurRadius: 4,
+                )
+              ],
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30)),
+              gradient: LinearGradient(
+                  colors: [Colors.orange.shade400, Colors.red.shade300])),
+        ),
       ),
-      backgroundColor: const Color.fromARGB(255, 179, 203, 255),
+      backgroundColor: const Color.fromARGB(255, 15, 31, 65),
       drawer: MyDrawer(
         onProfileTap: goToProfilePage,
         onSignOutTap: goToSignOutPage,
       ),
       drawerEnableOpenDragGesture: true,
       body: Container(
-        color: Color.fromARGB(255, 15, 31, 65),
+        color: const Color.fromARGB(255, 15, 31, 65),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 35,
@@ -138,24 +155,26 @@ class _HomePageState extends State<HomePage> {
                   child: ListView(children: [
                 const SizedBox(height: 60),
                 MUIPrimaryCard(
-                    title: "Files",
-                    description: "",
-                    buttons: [
-                      MUIGradientButton(
-                          text: "Upload",
-                          onPressed: () {
-                            _showUploadSheet(context);
-                          })
-                    ],
-                    image: Icon(Icons.upload_file_rounded)),
+                  title: "Files",
+                  description: "",
+                  buttons: [
+                    MUIGradientButton(
+                        text: "Upload",
+                        onPressed: () {
+                          _showUploadSheet(context);
+                        })
+                  ],
+                  image: const Icon(Icons.upload_file_rounded),
+                ),
                 const SizedBox(height: 20),
-                MUISimpleCard(title: "Follow us!", description: "description"),
+                const MUISimpleCard(
+                    title: "Follow us!", description: "description"),
                 const SizedBox(height: 20),
                 Container(
                     width: 350,
                     height: 200,
                     decoration: BoxDecoration(
-                        color: Color(0xffffb347),
+                        color: const Color(0xffffb347),
                         borderRadius: BorderRadius.circular(20),
                         boxShadow: const [
                           BoxShadow(
@@ -228,7 +247,7 @@ class NewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 80,
       height: 60,
       child: LottieBuilder.asset("assets/app_assets/upload.json"),
