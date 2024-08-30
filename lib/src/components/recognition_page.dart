@@ -32,20 +32,21 @@ class _RecognizePageState extends State<RecognizePage> {
         toolbarHeight: 50,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0xffff6961),
-                  spreadRadius: 1,
-                  blurRadius: 4,
-                )
-              ],
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30)),
-              gradient: LinearGradient(
-                  colors: [Colors.orange.shade400, Colors.red.shade300])),
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0xffff6961),
+                    spreadRadius: 1,
+                    blurRadius: 4,
+                  )
+                ],
+                borderRadius: const BorderRadius.all(Radius.circular(30)),
+                gradient: LinearGradient(
+                    colors: [Colors.orange.shade400, Colors.red.shade300])),
+          ),
         ),
       ),
       body: _isBusy == true
@@ -57,8 +58,9 @@ class _RecognizePageState extends State<RecognizePage> {
               child: TextFormField(
                 maxLines: MediaQuery.of(context).size.height.toInt(),
                 controller: _ocrController,
-                decoration:
-                    const InputDecoration(hintText: "Text goes at this spot"),
+                decoration: const InputDecoration(
+                  hintText: "Text goes at this spot",
+                ),
               ),
             ),
     );
