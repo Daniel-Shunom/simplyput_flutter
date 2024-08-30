@@ -1,11 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:google_mlkit_document_scanner/google_mlkit_document_scanner.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 
 class RecognizePage extends StatefulWidget {
   final String? imgpath;
-  const RecognizePage({super.key, this.imgpath});
+  final String? docpath;
+  const RecognizePage({super.key, this.imgpath, this.docpath});
 
   @override
   State<RecognizePage> createState() => _RecognizePageState();
@@ -84,5 +86,11 @@ class _RecognizePageState extends State<RecognizePage> {
     setState(() {
       _isBusy = false;
     });
+  }
+
+  //document recognition
+  void processDoc(InputDocument document) async {
+    DocumentScanningResult docResult = await documentScanner.scanDocument;
+    final pdf = docResult.pdf;
   }
 }
