@@ -87,10 +87,4 @@ class _RecognizePageState extends State<RecognizePage> {
       _isBusy = false;
     });
   }
-
-  //document recognition
-  void processDoc(InputDocument document) async {
-    DocumentScanningResult docResult = await documentScanner.scanDocument;
-    final pdf = docResult.pdf;
-  }
 }
