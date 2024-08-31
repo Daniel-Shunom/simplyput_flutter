@@ -44,7 +44,14 @@ class _BookState extends State<Book> {
             const SizedBox(
               height: 20,
             ),
-            MUIOutlinedButton(text: "Go to chatbot", onPressed: () {}),
+            MUIOutlinedButton(
+                text: "Go to chatbot",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ResultView()));
+                }),
           ],
         ),
       ),
@@ -62,6 +69,26 @@ class ResultView extends HookConsumerWidget {
     final queryTextController = useTextEditingController();
 
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 70,
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0xffff6961),
+                  spreadRadius: 1,
+                  blurRadius: 4,
+                )
+              ],
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30)),
+              gradient: LinearGradient(
+                  colors: [Colors.orange.shade400, Colors.red.shade300])),
+        ),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -80,7 +107,9 @@ class ResultView extends HookConsumerWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: MUIOutlinedButton(text: "Ask", onPressed: () {}),
-              )
+              ),
+              const SizedBox(height: 20),
+              MUIPrimaryButton(text: "upload PDF", onPressed: () {})
             ],
           ),
         ),
