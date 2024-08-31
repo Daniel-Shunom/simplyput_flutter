@@ -41,6 +41,7 @@ dependencies:
   langchain_pinecone: ^0.1.0+8
   langchain: ^0.7.5
   flutter_gemini: ^2.0.5
+  build_runner: ^2.4.12
 
 dev_dependencies:
   flutter_test:
