@@ -39,6 +39,7 @@ dependencies:
   pinecone: ^0.7.2
   langchain_google: ^0.6.2
   langchain_pinecone: ^0.1.0+8
+  langchain: ^0.7.5
 
 dev_dependencies:
   flutter_test:
