@@ -1,9 +1,43 @@
+import 'dart:developer';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:langchain/langchain.dart';
 import 'package:langchain_core/src/documents/document.dart';
 import 'package:langchain_google/langchain_google.dart';
 import 'package:langchain_pinecone/langchain_pinecone.dart';
 import 'package:pinecone/pinecone.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simplyputapp/src/backend/langchain_service.dart';
+
+import 'core/config.dart';
+
+//provides that service function that we made to the docs
+final langChainServiceProvider = Provider<LangChainService>((ref) {
+  final pineConeAPIKey = dotenv.env["PINECONE_API_KEY"]!;
+  final googleGeminiAPIKey = dotenv.env["GOOGLE_G_AI_APIKEY"]!;
+
+  final pineConeClient = PineconeClient(
+    apiKey: pineConeAPIKey,
+  );
+
+  final embeddings = GoogleGenerativeAIEmbeddings(apiKey: googleGeminiAPIKey);
+
+  final langchainPineCone = Pinecone(
+      apiKey: pineConeAPIKey,
+      indexName: ServiceConfig.indexName,
+      embeddings: embeddings);
+
+  //make sure to double check if it is the embedding model or the genAI model
+  final googleGeminiAI = ChatGoogleGenerativeAI(
+    apiKey: googleGeminiAPIKey,
+  );
+
+  return LangChainServiceImpl(
+      client: pineConeClient,
+      langChainPinecone: langchainPineCone,
+      embeddings: embeddings,
+      googleGemini: googleGeminiAI);
+});
 
 class LangChainServiceImpl implements LangChainService {
   final PineconeClient client;
