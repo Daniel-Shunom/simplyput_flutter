@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:langchain/langchain.dart';
+import 'package:langchain_core/document_loaders.dart';
+import 'package:langchain_community/langchain_community.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:build_runner/build_runner.dart';
@@ -42,8 +44,13 @@ class IndexNotifier extends _$IndexNotifier {
   Future<List<Document>> fetchDocuments() async {
     try {
       final textFileFromPDF = await convertPDFToTextAndSaveInDir();
-      final loader = TextLoader(textFileFromPDF);
-    } catch (e) {}
+      final loader = await TextLoader(textFileFromPDF);
+      final documents = await loader.load();
+
+      return documents;
+    } catch (e) {
+      throw Exception("error creating pinecone documents");
+    }
   }
 
   //converts to pdf for fetchDocuments method to use

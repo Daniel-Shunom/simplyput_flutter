@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:open_file/open_file.dart';
 import 'package:image_picker/image_picker.dart';
@@ -45,4 +47,30 @@ Future<String> pickImage() async {
   }
 
   return imgpath;
+}
+
+//gets file as a document but doesnt open it
+//this might be the main fucntion later hopefully
+Future<File?> pickPDFFiles() async {
+  // Open the file
+  void openFile(PlatformFile file) {
+    // Set linuxByProcess to false and linuxUsegio to true
+    OpenFile.open(file.path!, linuxByProcess: false, linuxUseGio: true);
+  }
+
+  final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
+      allowMultiple: true,
+      allowCompression: true,
+      type: FileType.custom,
+      allowedExtensions: ['pdf'] /*allowedExtensions: ['pdf', 'txt']*/
+      );
+
+  if (pickedFile != null) {
+    final file = File(pickedFile.files.first.path!);
+    print(file.path);
+    openFile(pickedFile.files.first);
+    return file;
+  }
+
+  return null;
 }
