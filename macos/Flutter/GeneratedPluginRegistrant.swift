@@ -8,7 +8,7 @@ import Foundation
 import file_selector_macos
 import firebase_auth
 import firebase_core
-import open_file
+import open_file_mac
 import path_provider_foundation
 import url_launcher_macos
 

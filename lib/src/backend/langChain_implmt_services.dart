@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:langchain/langchain.dart';
-import 'package:langchain_core/src/documents/document.dart';
 import 'package:langchain_google/langchain_google.dart';
 import 'package:langchain_pinecone/langchain_pinecone.dart';
 import 'package:pinecone/pinecone.dart';
