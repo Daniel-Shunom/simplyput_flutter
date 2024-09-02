@@ -787,7 +787,7 @@ packages:
     source: hosted
     version: "0.3.1"
   langchain_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: langchain_core
       sha256: "59c9914f9f542d728709d631923cfad7d6d09b7a9dce0f9cec7b508034ff27fb"
