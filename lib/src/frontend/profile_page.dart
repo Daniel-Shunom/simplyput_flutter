@@ -13,7 +13,7 @@ class _UserProfileState extends State<UserProfile> {
     return Scaffold(
       backgroundColor: Colors.grey.shade300,
       appBar: AppBar(
-        title: Text("profile"),
+        title: const Text("profile"),
         backgroundColor: Colors.grey.shade900,
       ),
       body: ListView(

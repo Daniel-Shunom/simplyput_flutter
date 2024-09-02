@@ -1,7 +1,5 @@
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modular_ui/modular_ui.dart';
 import 'package:open_file/open_file.dart';
@@ -17,6 +15,8 @@ import 'package:simplyputapp/src/backend/doc_pickers.dart';
 }*/
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -24,20 +24,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   void goToProfilePage() {
     //pop menu drawer
-    Navigator.pop(context as BuildContext);
+    Navigator.pop(context);
 
     //go to profile page
-    Navigator.push(context as BuildContext,
-        MaterialPageRoute(builder: (context) => UserProfile()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const UserProfile()));
   }
 
   void goToSignOutPage() {
     //pop menu drawer
-    Navigator.pop(context as BuildContext);
+    Navigator.pop(context);
 
     //go to profile page
-    Navigator.push(context as BuildContext,
-        MaterialPageRoute(builder: (context) => SignOutPage()));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const SignOutPage()));
   }
 
   //open a file
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: [
                       ElevatedButton(
-                        child: Icon(Icons.close),
+                        child: const Icon(Icons.close),
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -109,6 +109,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

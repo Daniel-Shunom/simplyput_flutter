@@ -12,7 +12,7 @@ class _SignOutPageState extends State<SignOutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-      title: Text("signout"),
+      title: const Text("signout"),
     ));
   }
 }

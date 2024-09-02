@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class OcrListPage extends StatefulWidget {
   final TextEditingController ocrController;
 
-  const OcrListPage({Key? key, required this.ocrController}) : super(key: key);
+  const OcrListPage({super.key, required this.ocrController});
 
   @override
   _OcrListPageState createState() => _OcrListPageState();
@@ -39,7 +39,7 @@ class _OcrListPageState extends State<OcrListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('OCR Text List'),
+        title: const Text('OCR Text List'),
       ),
       body: ListView.builder(
         itemCount: ocrTexts.length,

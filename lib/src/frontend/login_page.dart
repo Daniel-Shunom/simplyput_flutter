@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modular_ui/modular_ui.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({
+  const LoginPage({
     super.key,
   });
 

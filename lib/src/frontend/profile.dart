@@ -39,7 +39,7 @@ class _nameState extends State<UserProfile> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Container(
           decoration: BoxDecoration(
               color: Colors.white,

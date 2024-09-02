@@ -6,7 +6,7 @@ import 'package:simplyputapp/src/frontend/home_works.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 
 class NavigationMenu extends StatefulWidget {
-  const NavigationMenu({Key? key}) : super(key: key);
+  const NavigationMenu({super.key});
 
   @override
   _NavigationMenuState createState() => _NavigationMenuState();
@@ -15,7 +15,7 @@ class NavigationMenu extends StatefulWidget {
 class _NavigationMenuState extends State<NavigationMenu> {
   int _selectedIndex = 0;
   final List<Widget> tabItems = [
-    HomePage(),
+    const HomePage(),
     const Homework(),
     const Book(),
     const UserProfile(),
@@ -40,26 +40,26 @@ class _NavigationMenuState extends State<NavigationMenu> {
             FlashyTabBarItem(
               icon: Image.asset(
                 "assets/images/tab_home.png",
-                color: Color(0xff9496c1),
+                color: const Color(0xff9496c1),
                 width: 30,
               ),
-              title: Text('Home'),
+              title: const Text('Home'),
             ),
             FlashyTabBarItem(
               icon: Image.asset(
                 "assets/images/tab_homework.png",
-                color: Color(0xff9496c1),
+                color: const Color(0xff9496c1),
                 width: 30,
               ),
-              title: Text('Homework'),
+              title: const Text('Homework'),
             ),
             FlashyTabBarItem(
-              icon: Icon(Icons.event),
-              title: Text('Events'),
+              icon: const Icon(Icons.event),
+              title: const Text('Events'),
             ),
             FlashyTabBarItem(
-              icon: Icon(Icons.person_2_rounded),
-              title: Text('profile'),
+              icon: const Icon(Icons.person_2_rounded),
+              title: const Text('profile'),
             ),
           ],
         ),
