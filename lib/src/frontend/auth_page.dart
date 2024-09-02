@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:simplyputapp/src/frontend/home.dart';
 import 'package:simplyputapp/src/frontend/login_page.dart';
 import 'package:simplyputapp/src/frontend/navigation_menu.dart';
 

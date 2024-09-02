@@ -2,7 +2,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modular_ui/modular_ui.dart';
 import 'package:open_file/open_file.dart';
@@ -47,7 +46,6 @@ class _HomePageState extends State<HomePage> {
     OpenFile.open(file.path, linuxByProcess: false, linuxUseGio: true);
   }
 
-  @override
   void _showUploadSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,

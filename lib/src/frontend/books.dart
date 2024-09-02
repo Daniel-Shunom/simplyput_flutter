@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:modular_ui/modular_ui.dart';
-import 'package:simplyputapp/src/backend/doc_pickers.dart';
 import 'package:simplyputapp/src/backend/index_notifier.dart';
 
 class Book extends StatefulWidget {

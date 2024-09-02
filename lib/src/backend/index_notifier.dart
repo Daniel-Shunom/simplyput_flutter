@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:langchain/langchain.dart';
-import 'package:langchain_core/document_loaders.dart';
 import 'package:langchain_community/langchain_community.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

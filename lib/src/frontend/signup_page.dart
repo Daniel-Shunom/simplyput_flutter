@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:modular_ui/modular_ui.dart';
-import 'package:simplyputapp/src/frontend/login_page.dart';
 
 class SignupPage extends StatelessWidget {
   //text editing controllers
