@@ -43,7 +43,7 @@ class IndexNotifier extends _$IndexNotifier {
   Future<List<Document>> fetchDocuments() async {
     try {
       final textFileFromPDF = await convertPDFToTextAndSaveInDir();
-      final loader = await TextLoader(textFileFromPDF);
+      final loader = TextLoader(textFileFromPDF);
       final documents = await loader.load();
 
       return documents;
