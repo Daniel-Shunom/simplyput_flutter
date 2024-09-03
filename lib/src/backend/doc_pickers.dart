@@ -53,10 +53,10 @@ Future<String> pickImage() async {
 //this might be the main fucntion later hopefully
 Future<File?> pickPDFFiles() async {
   // Open the file
-  void openFile(PlatformFile file) {
+  /*void openFile(PlatformFile file) {
     // Set linuxByProcess to false and linuxUsegio to true
     OpenFile.open(file.path!, linuxByProcess: false, linuxUseGio: true);
-  }
+  }*/
 
   final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
       allowMultiple: true,
@@ -68,7 +68,7 @@ Future<File?> pickPDFFiles() async {
   if (pickedFile != null) {
     final file = File(pickedFile.files.first.path!);
     print(file.path);
-    openFile(pickedFile.files.first);
+    //openFile(pickedFile.files.first);
     return file;
   }
 

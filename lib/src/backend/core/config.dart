@@ -1,4 +1,4 @@
 class ServiceConfig {
-  static const indexName = 'ask_pdf';
+  static const indexName = 'ask-pdf-index';
   static const timeout = '80000';
 }
