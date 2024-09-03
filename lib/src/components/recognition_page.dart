@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:modular_ui/modular_ui.dart';
 
 class RecognizePage extends StatefulWidget {
   final String? imgpath;
@@ -49,32 +50,68 @@ class _RecognizePageState extends State<RecognizePage> {
         ),
       ),
       body: _isBusy == true
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(35.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(width: 6, color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(30),
-                  color: Colors.white,
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0xffff6961),
-                      spreadRadius: 1,
-                      blurRadius: 4,
-                    )
-                  ],
-                ),
-                padding: const EdgeInsets.all(8),
-                child: TextFormField(
-                  maxLines: MediaQuery.of(context).size.height.toInt(),
-                  controller: _ocrController,
-                  decoration: const InputDecoration(
-                    hintText: "Text goes at this spot",
+          ? const SingleChildScrollView(
+              child: Column(
+                children: [
+                  Center(
+                    child: CircularProgressIndicator(),
                   ),
-                ),
+                ],
+              ),
+            )
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(35.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 6, color: Colors.transparent),
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Color(0xffff6961),
+                            spreadRadius: 1,
+                            blurRadius: 4,
+                          )
+                        ],
+                      ),
+                      padding: const EdgeInsets.all(8),
+                      child: TextFormField(
+                        maxLines: 15,
+                        controller: _ocrController,
+                        decoration: const InputDecoration(
+                          hintText: "Text goes at this spot",
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 1,
+                  ),
+                  //ACTION BUTTONS
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MUIPrimaryButton(
+                                text: "summarize", onPressed: () {}),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            MUIPrimaryButton(
+                                text: "summarize", onPressed: () {}),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
     );
