@@ -52,13 +52,28 @@ class _RecognizePageState extends State<RecognizePage> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : Container(
-              padding: const EdgeInsets.all(20),
-              child: TextFormField(
-                maxLines: MediaQuery.of(context).size.height.toInt(),
-                controller: _ocrController,
-                decoration: const InputDecoration(
-                  hintText: "Text goes at this spot",
+          : Padding(
+              padding: const EdgeInsets.all(35.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(width: 6, color: Colors.transparent),
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Color(0xffff6961),
+                      spreadRadius: 1,
+                      blurRadius: 4,
+                    )
+                  ],
+                ),
+                padding: const EdgeInsets.all(8),
+                child: TextFormField(
+                  maxLines: MediaQuery.of(context).size.height.toInt(),
+                  controller: _ocrController,
+                  decoration: const InputDecoration(
+                    hintText: "Text goes at this spot",
+                  ),
                 ),
               ),
             ),

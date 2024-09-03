@@ -68,6 +68,29 @@ class _BookState extends State<Book> {
   }
 }
 
+//UPLOAD PDF SERVICE
+//ON TAP, THIS FUNCTION WILL PICK THE PDF, PERFORM THE
+//EMBEDDINGS AND UPLOAD IT TO THE PINECONE DATABASE
+//VIA THE langchain_servica-implt function
+
+executeOperation(BuildContext context) async {
+  List<int>? selectedFile = await readPDFFile();
+  if (selectedFile != null) {
+    //String textFilePath = await IndexNotifier().convertPDFToTextAndSaveInDir();
+    //List<Document> documents = await IndexNotifier().fetchDocuments();
+    await IndexNotifier()
+        .ref
+        .read(indexNotifierProvider.notifier)
+        .createAndUploadPineconeIndex();
+  } else {
+    if (context.mounted) {
+      //show error
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("No pdf was selected")));
+    }
+  }
+}
+
 //Hooks river pod widget for displaying the result? probably?
 class ResultView extends HookConsumerWidget {
   const ResultView({super.key});
@@ -157,7 +180,8 @@ class ResultView extends HookConsumerWidget {
                               child: MUIPrimaryButton(
                                   text: "upload PDF",
                                   onPressed: () async {
-                                    File? selectedFile = await pickPDFFiles();
+                                    executeOperation(context);
+                                    //File? selectedFile = await pickPDFFiles();
                                     /*if (selectedFile != null) {
                                       String textFilePath =
                                           await convertPDFToTextAndSaveInDir();

@@ -23,7 +23,7 @@ class IndexNotifier extends _$IndexNotifier {
   @override
   IndexState build() => IndexState.initial;
 
-  void createAndUploadPineconeIndex() async {
+  createAndUploadPineconeIndex() async {
     const vectorDimension = 1536;
     state = IndexState.loading;
 
@@ -56,8 +56,8 @@ class IndexNotifier extends _$IndexNotifier {
     try {
       //pickPDFFile might be the main function
       //for now this function gets the pdf but without loading
-      final pdfFromAsset =
-          await pickPDFFiles(); //since we got the path froma previous fucntion we just pass it here
+      List<int>? pdfFromAsset =
+          await readPDFFile(); //since we got the path froma previous fucntion we just pass it here
       final document = PdfDocument(inputBytes: pdfFromAsset as Uint8List);
       // Extract text from the PDF
       String textExtract = PdfTextExtractor(document).extractText();

@@ -27,8 +27,8 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
 
     //go to profile page
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const UserProfile()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const UserProfile()));
   }
 
   void goToSignOutPage() {
@@ -36,8 +36,8 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
 
     //go to profile page
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const SignOutPage()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const SignOutPage()));
   }
 
   //open a file
@@ -184,53 +184,6 @@ class _HomePageState extends State<HomePage> {
                         ])),
                 const SizedBox(height: 20),
               ])),
-
-              //Button Container
-              /*Container(
-                //INNER BUTTON CONTENTS
-                padding: const EdgeInsets.all(15),
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                height: 70,
-                decoration: BoxDecoration(
-                    color: Color(0xffffb347),
-                    borderRadius: BorderRadius.circular(40),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0xffff6961),
-                        spreadRadius: 1,
-                        blurRadius: 8,
-                      )
-                    ]),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 2,
-                      ),
-                      onPressed: () {},
-                      child: const Text("data"),
-                    ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 2,
-                      ),
-                      onPressed: () {},
-                      child: const Text("Upload"),
-                    ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 2,
-                      ),
-                      onPressed: () {},
-                      child: const Text("data"),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20)*/
             ],
           ),
         ),

@@ -74,3 +74,11 @@ Future<File?> pickPDFFiles() async {
 
   return null;
 }
+
+Future<List<int>?> readPDFFile() async {
+  File? file = await pickPDFFiles();
+  if (file != null) {
+    return await file.readAsBytes();
+  }
+  return null;
+}
