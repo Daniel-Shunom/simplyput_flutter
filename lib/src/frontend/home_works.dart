@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modular_ui/modular_ui.dart';
+import 'package:simplyputapp/src/components/homeworkDynamicList.dart';
 
 class Homework extends StatefulWidget {
   const Homework({super.key});
@@ -9,6 +10,10 @@ class Homework extends StatefulWidget {
 }
 
 class _HomeworkState extends State<Homework> {
+  Future<List<String>> getPineConeItems() async {
+    return await pineConeClient.listIndexes();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,35 +23,51 @@ class _HomeworkState extends State<Homework> {
         centerTitle: true,
         flexibleSpace: Container(
           decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0xffff6961),
-                  spreadRadius: 1,
-                  blurRadius: 4,
-                )
-              ],
-              borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30)),
-              gradient: LinearGradient(
-                  colors: [Colors.orange.shade400, Colors.red.shade300])),
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0xffff6961),
+                spreadRadius: 1,
+                blurRadius: 4,
+              )
+            ],
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
+            ),
+            gradient: LinearGradient(
+              colors: [Colors.orange.shade400, Colors.red.shade300],
+            ),
+          ),
         ),
       ),
       body: Container(
         color: const Color.fromARGB(255, 233, 219, 201),
-        child: Column(
-          children: [
-            ListBody(
-              children: [
-                Column(
-                  children: [
-                    MUIPrimaryListTile(
-                        title: Container(), description: Container())
-                  ],
-                ),
-              ],
-            )
-          ],
+        child: FutureBuilder<List<String>>(
+          future: getPineConeItems(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (snapshot.hasData) {
+              List<String> pineConeItems = snapshot.data!;
+              return Column(
+                children: [
+                  ListBody(
+                    children: [
+                      Column(
+                        children: [
+                          IndexHWItems(items: pineConeItems),
+                        ],
+                      ),
+                    ],
+                  )
+                ],
+              );
+            } else {
+              return Center(child: Text('No data available'));
+            }
+          },
         ),
       ),
     );
