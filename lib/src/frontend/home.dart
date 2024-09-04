@@ -132,14 +132,14 @@ class _HomePageState extends State<HomePage> {
                   colors: [Colors.orange.shade400, Colors.red.shade300])),
         ),
       ),
-      backgroundColor: const Color.fromARGB(255, 15, 31, 65),
+      backgroundColor: const Color.fromARGB(255, 233, 219, 201),
       drawer: MyDrawer(
         onProfileTap: goToProfilePage,
         onSignOutTap: goToSignOutPage,
       ),
       drawerEnableOpenDragGesture: true,
       body: Container(
-        color: const Color.fromARGB(255, 15, 31, 65),
+        color: const Color.fromARGB(255, 233, 219, 201),
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 35,

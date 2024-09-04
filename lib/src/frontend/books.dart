@@ -25,7 +25,7 @@ class _BookState extends State<Book> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(255, 233, 219, 201),
         centerTitle: true,
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -43,25 +43,28 @@ class _BookState extends State<Book> {
                   colors: [Colors.orange.shade400, Colors.red.shade300])),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 90,
-            ),
-            const Text("Books"),
-            const SizedBox(
-              height: 20,
-            ),
-            MUIOutlinedButton(
-                text: "Go to chatbot",
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ResultView()));
-                }),
-          ],
+      body: Container(
+        color: const Color.fromARGB(255, 233, 219, 201),
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 90,
+              ),
+              const Text("Books"),
+              const SizedBox(
+                height: 20,
+              ),
+              MUIOutlinedButton(
+                  text: "Go to chatbot",
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ResultView()));
+                  }),
+            ],
+          ),
         ),
       ),
     );

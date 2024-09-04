@@ -14,7 +14,7 @@ class _HomeworkState extends State<Homework> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(255, 233, 219, 201),
         centerTitle: true,
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -32,12 +32,18 @@ class _HomeworkState extends State<Homework> {
                   colors: [Colors.orange.shade400, Colors.red.shade300])),
         ),
       ),
-      body: Center(
+      body: Container(
+        color: const Color.fromARGB(255, 233, 219, 201),
         child: Column(
           children: [
             ListBody(
               children: [
-                MUIPrimaryListTile(title: Container(), description: Container())
+                Column(
+                  children: [
+                    MUIPrimaryListTile(
+                        title: Container(), description: Container())
+                  ],
+                ),
               ],
             )
           ],
