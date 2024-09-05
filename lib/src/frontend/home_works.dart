@@ -57,7 +57,7 @@ class _HomeworkState extends State<Homework> {
                     children: [
                       Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 60,
                           ),
                           IndexHWItems(items: pineConeItems),

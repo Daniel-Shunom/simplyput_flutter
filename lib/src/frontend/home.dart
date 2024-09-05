@@ -152,7 +152,40 @@ class _HomePageState extends State<HomePage> {
               //ANIMATED SVG
               Expanded(
                   child: ListView(children: [
-                const SizedBox(height: 60),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 20,
+                      child: Icon(
+                        Icons.person_2_rounded,
+                        color: Colors.blue.shade300,
+                        size: 30,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    const Text(
+                      "Welcome back Daniel",
+                      style:
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                    ),
+                    const SizedBox(
+                      width: 60,
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Icon(
+                        Icons.notifications,
+                        color: Colors.red.shade400,
+                        size: 30,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 20),
                 MUIPrimaryCard(
                   title: "Files",
                   description: "",
