@@ -159,22 +159,20 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     CircleAvatar(
                       backgroundColor: Colors.white,
-                      radius: 20,
+                      radius: 15,
                       child: Icon(
                         Icons.person_2_rounded,
                         color: Colors.blue.shade300,
-                        size: 30,
+                        size: 20,
                       ),
                     ),
                     const SizedBox(width: 10),
                     const Text(
-                      "Welcome back Daniel",
+                      "Good day Daniel,",
                       style:
                           TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
                     ),
-                    const SizedBox(
-                      width: 60,
-                    ),
+                    const Spacer(),
                     Container(
                       alignment: Alignment.centerRight,
                       child: Icon(
@@ -185,7 +183,17 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(
+                  height: 5,
+                ),
+                Container(
+                  child: const Text(
+                    "let us get started",
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
+                  ),
+                ),
+                const SizedBox(height: 40),
                 MUIPrimaryCard(
                   title: "Files",
                   description: "",
