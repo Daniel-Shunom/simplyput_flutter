@@ -52,56 +52,69 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context,
           {VoidCallback? onCameraTap, VoidCallback? onChooseFileTap}) {
         return SizedBox(
-          height: 400,
-          child: Center(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      ElevatedButton(
-                        child: const Icon(Icons.close),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ],
+          height: 200,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: 5,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.grey.shade800,
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: null,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                MUIGradientBlockButton(
-                    text: "Camera",
-                    onPressed: () {
-                      pickImage().then((value) {
-                        if (value != '') {
-                          imgCropperView(value, context).then((value) {
-                            if (value != '') {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => RecognizePage(
-                                            imgpath: value,
-                                          )));
-                            }
-                          });
-                        }
-                      });
-                    }),
-                const SizedBox(height: 20),
-                MUIOutlinedBlockButton(
-                    text: "choose files",
-                    onPressed: () async {
-                      pickFiles().then((value) {
-                        if (value != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) =>
-                                      RecognizePage(imgpath: value)));
-                        }
-                      });
-                    }),
-              ],
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  MUIGradientBlockButton(
+                      text: "Camera",
+                      onPressed: () {
+                        pickImage().then((value) {
+                          if (value != '') {
+                            imgCropperView(value, context).then((value) {
+                              if (value != '') {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => RecognizePage(
+                                              imgpath: value,
+                                            )));
+                              }
+                            });
+                          }
+                        });
+                      }),
+                  const SizedBox(height: 10),
+                  MUIOutlinedBlockButton(
+                      text: "choose files",
+                      onPressed: () async {
+                        pickFiles().then((value) {
+                          if (value != null) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) =>
+                                        RecognizePage(imgpath: value)));
+                          }
+                        });
+                      }),
+                ],
+              ),
             ),
           ),
         );
@@ -142,7 +155,7 @@ class _HomePageState extends State<HomePage> {
         color: const Color.fromARGB(255, 233, 219, 201),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 35,
+            horizontal: 20,
           ),
           //BUTTONS
           child: Column(
@@ -209,6 +222,11 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 20),
                 const MUISimpleCard(
                     title: "Follow us!", description: "description"),
+                const SizedBox(height: 20),
+                const MUIPrimaryCard(
+                    title: "title",
+                    description: "description",
+                    image: const Icon(Icons.upload_file)),
                 const SizedBox(height: 20),
                 Container(
                     width: 350,

@@ -42,7 +42,8 @@ class _nameState extends State<UserProfile> {
         padding: const EdgeInsets.all(15),
         child: Container(
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color.fromARGB(
+                  246, 233, 222, 163), //fromARGB(255, 240, 193, 193),
               border: Border.all(
                 color: Colors.grey.shade100,
                 width: 4,
@@ -53,10 +54,16 @@ class _nameState extends State<UserProfile> {
               child: Column(
             children: [
               const SizedBox(height: 80),
-              const Icon(
-                Icons.person,
-                size: 200,
+              CircleAvatar(
+                backgroundColor: Colors.grey.shade500,
+                radius: 80,
+                child: Icon(
+                  Icons.person_2_rounded,
+                  color: Colors.blue.shade300,
+                  size: 120,
+                ),
               ),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 60.0),
                 child: Column(

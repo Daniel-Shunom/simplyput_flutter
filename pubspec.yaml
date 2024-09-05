@@ -44,6 +44,7 @@ dependencies:
   build_runner: ^2.4.12
   langchain_community: ^0.3.1
   langchain_core: ^0.3.5
+  rive: ^0.13.13
 
 dev_dependencies:
   flutter_test:
@@ -61,3 +62,16 @@ flutter:
     - assets/app_assets/
     - assets/images/
     - .env
+
+  fonts:
+    - family: Outfit
+      fonts: 
+        - asset: fonts/Outfit_otf/Outfit-Black.otf
+        - asset: fonts/Outfit_otf/Outfit-Regular.otf
+        - asset: fonts/Outfit_otf/Outfit-Bold.otf
+        - asset: fonts/Outfit_otf/Outfit-ExtraBold.otf
+        - asset: fonts/Outfit_otf/Outfit-ExtraLight.otf
+        - asset: fonts/Outfit_otf/Outfit-Light.otf
+        - asset: fonts/Outfit_otf/Outfit-Medium.otf
+        - asset: fonts/Outfit_otf/Outfit-SemiBold.otf
+        - asset: fonts/Outfit_otf/Outfit-Thin.otf
