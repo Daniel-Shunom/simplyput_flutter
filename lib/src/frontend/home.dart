@@ -182,8 +182,11 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(width: 10),
                     const Text(
                       "Good day Daniel,",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
+                      style: TextStyle(
+                        fontFamily: "Outfit",
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                      ),
                     ),
                     const Spacer(),
                     Container(
@@ -202,8 +205,11 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   child: const Text(
                     "let us get started",
-                    style:
-                        TextStyle(fontWeight: FontWeight.normal, fontSize: 15),
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 15,
+                      fontFamily: "Outfit",
+                    ),
                   ),
                 ),
                 const SizedBox(height: 40),
