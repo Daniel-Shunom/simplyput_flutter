@@ -76,20 +76,18 @@ class _BookState extends State<Book> {
 //EMBEDDINGS AND UPLOAD IT TO THE PINECONE DATABASE
 //VIA THE langchain_servica-implt function
 
-executeOperation(BuildContext context) async {
+executeOperation(BuildContext context, WidgetRef ref) async {
   List<int>? selectedFile = await readPDFFile();
   if (selectedFile != null) {
-    //String textFilePath = await IndexNotifier().convertPDFToTextAndSaveInDir();
-    //List<Document> documents = await IndexNotifier().fetchDocuments();
-    await IndexNotifier()
-        .ref
+    await ref
         .read(indexNotifierProvider.notifier)
         .createAndUploadPineconeIndex();
   } else {
     if (context.mounted) {
-      //show error
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("No pdf was selected")));
+      // Show error
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("No PDF was selected")),
+      );
     }
   }
 }
@@ -183,7 +181,7 @@ class ResultView extends HookConsumerWidget {
                               child: MUIPrimaryButton(
                                   text: "upload PDF",
                                   onPressed: () async {
-                                    executeOperation(context);
+                                    executeOperation(context, ref);
                                     //File? selectedFile = await pickPDFFiles();
                                     /*if (selectedFile != null) {
                                       String textFilePath =
