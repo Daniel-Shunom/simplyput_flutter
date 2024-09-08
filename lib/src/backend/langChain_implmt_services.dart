@@ -55,6 +55,7 @@ class LangChainServiceImpl implements LangChainService {
       String indexName, int vectorDimension) async {
     print("checking $indexName");
     final indexes = await client.listIndexes();
+    print(indexes);
     try {
       if (!indexes.contains(indexName)) {
         print("creating $indexName ...");
@@ -81,6 +82,8 @@ class LangChainServiceImpl implements LangChainService {
     final queryEmbeddings = await embeddings.embedQuery(query);
     final result = await langChainPinecone.similaritySearchByVector(
         embedding: queryEmbeddings);
+    //TAKE OUT LATER
+    print(queryEmbeddings);
 
     if (result.isNotEmpty) {
       final concatPageContent = result.map((e) {
@@ -98,6 +101,7 @@ class LangChainServiceImpl implements LangChainService {
         'question': query
       });
 
+      //TAKE OUT LATER
       print(result);
 
       return response["output"];
