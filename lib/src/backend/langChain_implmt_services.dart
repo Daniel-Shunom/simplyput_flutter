@@ -55,17 +55,21 @@ class LangChainServiceImpl implements LangChainService {
       String indexName, int vectorDimension) async {
     print("checking $indexName");
     final indexes = await client.listIndexes();
-    if (!indexes.contains(indexName)) {
-      print("creating $indexName ...");
-      await client.createIndex(
-          request: CreateIndexRequest(
-              name: indexName,
-              dimension: vectorDimension,
-              metric: SearchMetric.cosine));
-      print("creating index .... please wait for it to finish intializing");
-      await Future.delayed(const Duration(seconds: 5));
-    } else {
-      print("$indexName already exists!");
+    try {
+      if (!indexes.contains(indexName)) {
+        print("creating $indexName ...");
+        await client.createIndex(
+            request: CreateIndexRequest(
+                name: indexName,
+                dimension: vectorDimension,
+                metric: SearchMetric.cosine));
+        print("creating index .... please wait for it to finish intializing");
+        await Future.delayed(const Duration(seconds: 1));
+      } else {
+        print("$indexName already exists!");
+      }
+    } catch (e) {
+      print(e);
     }
   }
 
