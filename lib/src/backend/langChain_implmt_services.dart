@@ -60,6 +60,8 @@ class LangChainServiceImpl implements LangChainService {
       if (!indexes.contains(indexName)) {
         print("creating $indexName ...");
         await client.createIndex(
+            //SPECIFYING THE ENVIRONMENTIN FLUTTER IS NECESSARY!!! DO NOT SKIP!!
+            environment: dotenv.env['PINECONE_ENVIRONMENT']!,
             request: CreateIndexRequest(
                 name: indexName,
                 dimension: vectorDimension,
