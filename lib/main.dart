@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: "Outfit"),
       debugShowCheckedModeBanner: false,
-      home: AuthPage(),
+      home: const AuthPage(),
     );
   }
 }

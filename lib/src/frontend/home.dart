@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                 const MUIPrimaryCard(
                     title: "title",
                     description: "description",
-                    image: const Icon(Icons.upload_file)),
+                    image: Icon(Icons.upload_file)),
                 const SizedBox(height: 20),
                 Container(
                     width: 350,

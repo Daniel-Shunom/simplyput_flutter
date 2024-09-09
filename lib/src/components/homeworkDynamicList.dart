@@ -32,7 +32,7 @@ class IndexHWItems extends StatelessWidget {
       future: fileDisplayBuilder(items),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
@@ -41,8 +41,8 @@ class IndexHWItems extends StatelessWidget {
             children: [
               for (var entry in indexMap.entries)
                 Container(
-                  padding: EdgeInsets.all(8.0),
-                  margin: EdgeInsets.symmetric(vertical: 4.0),
+                  padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.symmetric(vertical: 4.0),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.blue),
                     borderRadius: BorderRadius.circular(8.0),
@@ -50,8 +50,8 @@ class IndexHWItems extends StatelessWidget {
                   child: Row(
                     children: [
                       Text('Index ${entry.key}:',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      SizedBox(width: 8.0),
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      const SizedBox(width: 8.0),
                       Text('${entry.value}'),
                     ],
                   ),
@@ -59,7 +59,7 @@ class IndexHWItems extends StatelessWidget {
             ],
           );
         } else {
-          return Text('No data available');
+          return const Text('No data available');
         }
       },
     );

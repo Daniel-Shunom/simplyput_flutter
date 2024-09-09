@@ -42,7 +42,7 @@ class _nameState extends State<UserProfile> {
         padding: const EdgeInsets.all(15),
         child: Container(
           decoration: BoxDecoration(
-              color: Color.fromARGB(
+              color: const Color.fromARGB(
                   246, 233, 222, 163), //fromARGB(255, 240, 193, 193),
               border: Border.all(
                 color: Colors.grey.shade100,

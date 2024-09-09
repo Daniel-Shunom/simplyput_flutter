@@ -166,8 +166,9 @@ class ResultView extends HookConsumerWidget {
                               child: MUIOutlinedButton(
                                   text: "Ask",
                                   onPressed: () {
-                                    if (!_formKey.currentState!.validate())
+                                    if (!_formKey.currentState!.validate()) {
                                       return;
+                                    }
                                     //queries the vector store!
                                     ref
                                         .read(queryNotifierProvider.notifier)
