@@ -32,7 +32,7 @@ class IndexNotifier extends _$IndexNotifier {
           .read(langChainServiceProvider)
           .createPineConeIndex(ServiceConfig.indexName, vectorDimension);
 
-      final docs = await fetchDocuments();
+      //final docs = await fetchDocuments();
     } catch (e) {}
   }
 
@@ -71,7 +71,8 @@ class IndexNotifier extends _$IndexNotifier {
       //disposes of the old document to free memory i guess
       document.dispose();
 
-      return res.path;
+      //return res.path;
+      return textExtract;
     } catch (e) {
       //if there is an error, it may be from sync fusion
       throw Exception("Error converting pdf to text");

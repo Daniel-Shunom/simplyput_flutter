@@ -183,19 +183,6 @@ class ResultView extends HookConsumerWidget {
                                   text: "upload PDF",
                                   onPressed: () async {
                                     executeOperation(context, ref);
-                                    //File? selectedFile = await pickPDFFiles();
-                                    /*if (selectedFile != null) {
-                                      String textFilePath =
-                                          await convertPDFToTextAndSaveInDir();
-                                      List<Document> documents =
-                                          await fetchDocuments();
-                                      await ref
-                                          .read(indexNotifierProvider.notifier)
-                                          .createAndUploadPineconeIndex();
-                                    } else {
-                                      //optional: show message if no file was picked
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("No pdf was selected")))
-                                    }*/
                                   }),
                             ),
                             const SizedBox(
