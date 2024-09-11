@@ -82,6 +82,7 @@ class _HomePageState extends State<HomePage> {
                     height: 20,
                   ),
                   MUIGradientBlockButton(
+                      leadingIcon: Icons.camera_alt,
                       text: "Camera",
                       onPressed: () {
                         pickImage().then((value) {
@@ -100,19 +101,23 @@ class _HomePageState extends State<HomePage> {
                         });
                       }),
                   const SizedBox(height: 10),
-                  MUIOutlinedBlockButton(
-                      text: "choose files",
-                      onPressed: () async {
-                        pickFiles().then((value) {
-                          if (value != null) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) =>
-                                        RecognizePage(imgpath: value)));
-                          }
-                        });
-                      }),
+                  Container(
+                    decoration: const BoxDecoration(),
+                    child: MUIOutlinedBlockButton(
+                        leadingIcon: Icons.upload_file_rounded,
+                        text: "choose files",
+                        onPressed: () async {
+                          pickFiles().then((value) {
+                            if (value != null) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) =>
+                                          RecognizePage(imgpath: value)));
+                            }
+                          });
+                        }),
+                  ),
                 ],
               ),
             ),

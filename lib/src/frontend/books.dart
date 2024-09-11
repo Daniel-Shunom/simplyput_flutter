@@ -55,6 +55,29 @@ class _BookState extends State<Book> {
               const SizedBox(
                 height: 20,
               ),
+              Container(
+                width: 300,
+                height: 200,
+                //color: Colors.white,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 4,
+                          color: Colors.orange.shade100,
+                          spreadRadius: 4,
+                          offset: Offset(2, 2))
+                    ]),
+                child: MUISimpleCard(
+                    title: "Meet yout advanced AI Bot",
+                    description: "description"),
+              ),
+              const SizedBox(height: 20),
               MUIOutlinedButton(
                   text: "Go to chatbot",
                   onPressed: () {
