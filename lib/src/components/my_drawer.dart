@@ -1,63 +1,115 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:simplyputapp/src/components/list_tile.dart';
+import 'package:simplyputapp/src/frontend/profile.dart';
 
 class MyDrawer extends StatelessWidget {
-  final void Function()? onProfileTap;
-  final void Function()? onSignOutTap;
-  const MyDrawer(
-      {super.key, required this.onProfileTap, required this.onSignOutTap});
+  final String userName;
+  final String userEmail;
+  final String userAvatarUrl;
+  final String headerBackgroundImageUrl;
+  final VoidCallback? onProfileTap;
+  final VoidCallback? onSettingsTap;
+  final VoidCallback? onPreferencesTap;
+  final VoidCallback? onSignOutTap;
+  final String appVersion;
+
+  const MyDrawer({
+    Key? key,
+    this.userName = 'User Name',
+    this.userEmail = 'user@example.com',
+    this.userAvatarUrl =
+        'https://plus.unsplash.com/premium_photo-1710911198710-3097c518f0e1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    this.headerBackgroundImageUrl =
+        'https://source.unsplash.com/random/?nature',
+    this.onProfileTap,
+    this.onSettingsTap,
+    this.onPreferencesTap,
+    this.onSignOutTap,
+    this.appVersion = '1.0.0',
+  }) : super(key: key);
+
+  void signUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.grey.shade100, // Light background for contrast
+        color: Colors.grey.shade100,
         child: Column(
           children: [
-            UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.amber.shade400,
-                image: DecorationImage(
-                  image: const NetworkImage(
-                      'https://source.unsplash.com/random/?nature'), // Placeholder image
-                  fit: BoxFit.cover,
-                  colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.5),
-                    BlendMode.darken,
+            Container(
+              height: 220,
+              child: UserAccountsDrawerHeader(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30)),
+                  color: Colors.red.shade700,
+                  image: DecorationImage(
+                    image: NetworkImage(headerBackgroundImageUrl),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0.5),
+                      BlendMode.darken,
+                    ),
                   ),
                 ),
-              ),
-              accountName: const Text('John Doe',
-                  style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "Outfit")),
-              accountEmail: const Text('john.doe@example.com'),
-              currentAccountPicture: const CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://source.unsplash.com/random/?portrait'), // Placeholder avatar
+                accountName: Text(
+                  userName,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Outfit",
+                  ),
+                ),
+                accountEmail: Text(userEmail),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(userAvatarUrl),
+                ),
               ),
             ),
             Expanded(
-              child: ListView(
-                padding: EdgeInsets.zero,
+              child: Column(
                 children: [
-                  _buildListTile(
-                      context, 'User Profile', Icons.person, Colors.blue),
-                  _buildListTile(
-                      context, 'Settings', Icons.settings, Colors.green),
-                  _buildListTile(
-                      context, 'User Preferences', Icons.tune, Colors.orange),
-                  Divider(color: Colors.grey[400]),
-                  _buildListTile(
-                      context, 'Logout', Icons.exit_to_app, Colors.red),
+                  CustomListTile(
+                    title: 'User Profile',
+                    icon: Icons.person,
+                    color: Colors.blue,
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const UserProfile()));
+                    },
+                  ),
+                  CustomListTile(
+                    title: 'Settings',
+                    icon: Icons.settings,
+                    color: Colors.green,
+                    onTap: onSettingsTap,
+                  ),
+                  CustomListTile(
+                    title: 'User Preferences',
+                    icon: Icons.tune,
+                    color: Colors.orange,
+                    onTap: onPreferencesTap,
+                  ),
+                  const Divider(color: Colors.grey),
+                  CustomListTile(
+                    title: 'Logout',
+                    icon: Icons.exit_to_app,
+                    color: Colors.red,
+                    onTap: signUserOut,
+                  ),
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'App Version 1.0.0',
+                'App Version $appVersion',
                 style: TextStyle(color: Colors.grey[600]),
               ),
             ),
@@ -66,12 +118,27 @@ class MyDrawer extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildListTile(
-      BuildContext context, String title, IconData icon, Color color) {
+class CustomListTile extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final Color color;
+  final VoidCallback? onTap;
+
+  const CustomListTile({
+    Key? key,
+    required this.title,
+    required this.icon,
+    required this.color,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return ListTile(
       leading: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: color.withOpacity(0.1),
           borderRadius: BorderRadius.circular(20),
@@ -80,11 +147,12 @@ class MyDrawer extends StatelessWidget {
       ),
       title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
       trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-      onTap: () {
-        // Handle navigation here
-        Navigator.pop(context); // Close the drawer
-        // Add navigation logic for each item
-      },
+      onTap: onTap != null
+          ? () {
+              Navigator.pop(context);
+              onTap!();
+            }
+          : null,
     );
   }
 }
