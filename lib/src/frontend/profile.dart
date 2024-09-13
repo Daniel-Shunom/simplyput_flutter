@@ -64,7 +64,7 @@ class UserProfile extends StatelessWidget {
                 const SizedBox(height: 30),
                 _buildSubscriptionPlan(),
                 const SizedBox(height: 30),
-                _buildInfoSection(),
+                //_buildInfoSection(),
                 const SizedBox(height: 30),
                 _buildActionButtons(),
                 const SizedBox(height: 30),
@@ -166,7 +166,7 @@ class UserProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoSection() {
+  /*Widget _buildInfoSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -184,7 +184,7 @@ class UserProfile extends StatelessWidget {
         _buildInfoTile(Icons.location_on, 'San Francisco, CA'),
       ],
     );
-  }
+  }*/
 
   Widget _buildInfoTile(IconData icon, String text) {
     return Padding(
@@ -219,7 +219,7 @@ class UserProfile extends StatelessWidget {
       width: double.infinity,
       height: 60,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.1),
@@ -236,7 +236,7 @@ class UserProfile extends StatelessWidget {
               isPrimary ? Colors.white.withOpacity(0.2) : Colors.white,
           elevation: 0,
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
         icon: Icon(icon),
         label: Text(
