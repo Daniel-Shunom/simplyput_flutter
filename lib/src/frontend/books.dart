@@ -22,75 +22,71 @@ class Book extends StatefulWidget {
 class _BookState extends State<Book> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 70,
-          backgroundColor: const Color.fromARGB(255, 233, 219, 201),
-          centerTitle: true,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-                boxShadow: const [
-                  BoxShadow(
-                    color: Color(0xffff6961),
-                    spreadRadius: 1,
-                    blurRadius: 4,
-                  )
-                ],
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30)),
-                gradient: LinearGradient(
-                    colors: [Colors.orange.shade400, Colors.red.shade300])),
-          ),
-          bottom: TabBar(tabs: const []),
-        ),
-        body: Container(
-          color: const Color.fromARGB(255, 233, 219, 201),
-          child: Center(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 90,
-                ),
-                const Text("Books"),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  width: 300,
-                  height: 200,
-                  //color: Colors.white,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.white,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 4,
-                            color: Colors.orange.shade100,
-                            spreadRadius: 4,
-                            offset: Offset(2, 2))
-                      ]),
-                  child: MUISimpleCard(
-                      title: "Meet yout advanced AI Bot",
-                      description: "description"),
-                ),
-                const SizedBox(height: 20),
-                MUIOutlinedButton(
-                    text: "Go to chatbot",
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ResultView()));
-                    }),
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 70,
+        backgroundColor: const Color.fromARGB(255, 233, 219, 201),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Color(0xffff6961),
+                  spreadRadius: 1,
+                  blurRadius: 4,
+                )
               ],
-            ),
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30)),
+              gradient: LinearGradient(
+                  colors: [Colors.orange.shade400, Colors.red.shade300])),
+        ),
+      ),
+      body: Container(
+        color: const Color.fromARGB(255, 233, 219, 201),
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 90,
+              ),
+              const Text("Books"),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: 300,
+                height: 200,
+                //color: Colors.white,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 4,
+                          color: Colors.orange.shade100,
+                          spreadRadius: 4,
+                          offset: Offset(2, 2))
+                    ]),
+                child: MUISimpleCard(
+                    title: "Meet yout advanced AI Bot",
+                    description: "description"),
+              ),
+              const SizedBox(height: 20),
+              MUIOutlinedButton(
+                  text: "Go to chatbot",
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ResultView()));
+                  }),
+            ],
           ),
         ),
       ),

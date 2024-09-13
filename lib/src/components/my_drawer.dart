@@ -10,121 +10,81 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.grey.shade400,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            children: [
-              const SizedBox(
-                height: 60,
-              ),
-              //header
-              Container(
-                height: 70,
-                margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                    color: Colors.black38,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: const [
-                      //col
-                    ]),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.white,
-                        child: Icon(
-                          Icons.person,
-                          size: 30,
-                          color: Colors.blue.shade300,
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      const Text(
-                        "user_profile,",
-                        style: TextStyle(
-                          fontFamily: "Outfit",
-                          fontWeight: FontWeight.w700,
-                          fontSize: 15,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const Spacer(),
-                      const Icon(
-                        Icons.edit,
-                        size: 20,
-                      )
-                    ],
+      child: Container(
+        color: Colors.grey.shade100, // Light background for contrast
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.amber.shade400,
+                image: DecorationImage(
+                  image: const NetworkImage(
+                      'https://source.unsplash.com/random/?nature'), // Placeholder image
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.5),
+                    BlendMode.darken,
                   ),
                 ),
               ),
-
-              //home list tile
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  height: 70,
-                  margin: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: Colors.black38,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        //col
-                      ]),
-                  child: const Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.settings,
-                          size: 30,
-                          color: Colors.black,
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "settings",
-                          style: TextStyle(
-                            fontFamily: "Outfit",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                        const Spacer(),
-                        const Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          size: 20,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+              accountName: const Text('John Doe',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Outfit")),
+              accountEmail: const Text('john.doe@example.com'),
+              currentAccountPicture: const CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://source.unsplash.com/random/?portrait'), // Placeholder avatar
               ),
-
-              //profile list tile
-              MyListTile(
-                icon: Icons.person,
-                text: "P R O F I L E",
-                onTap: onProfileTap,
+            ),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  _buildListTile(
+                      context, 'User Profile', Icons.person, Colors.blue),
+                  _buildListTile(
+                      context, 'Settings', Icons.settings, Colors.green),
+                  _buildListTile(
+                      context, 'User Preferences', Icons.tune, Colors.orange),
+                  Divider(color: Colors.grey[400]),
+                  _buildListTile(
+                      context, 'Logout', Icons.exit_to_app, Colors.red),
+                ],
               ),
-            ],
-          ),
-
-          //logout list tile
-          MyListTile(
-            icon: Icons.logout,
-            text: "L O G O U T",
-            onTap: onSignOutTap,
-          )
-        ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'App Version 1.0.0',
+                style: TextStyle(color: Colors.grey[600]),
+              ),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildListTile(
+      BuildContext context, String title, IconData icon, Color color) {
+    return ListTile(
+      leading: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Icon(icon, color: color),
+      ),
+      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w500)),
+      trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+      onTap: () {
+        // Handle navigation here
+        Navigator.pop(context); // Close the drawer
+        // Add navigation logic for each item
+      },
     );
   }
 }
