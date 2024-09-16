@@ -23,17 +23,26 @@ class IndexNotifier extends _$IndexNotifier {
   @override
   IndexState build() => IndexState.initial;
 
-  createAndUploadPineconeIndex() async {
-    const vectorDimension = 1536;
-    state = IndexState.loading;
+  Future<void> createAndUploadPineconeIndex(File pdfFile) async {
+    final langChainService = ref.read(langChainServiceProvider);
 
-    try {
-      await ref
-          .read(langChainServiceProvider)
-          .createPineConeIndex(ServiceConfig.indexName, vectorDimension);
+    // Create the index
+    await langChainService.createPineConeIndex(ServiceConfig.indexName, 1536);
 
-      //final docs = await fetchDocuments();
-    } catch (e) {}
+    // Process the PDF file
+    final pdfText = await extractTextFromPDF(pdfFile);
+    final doc =
+        Document(pageContent: pdfText, metadata: {'source': pdfFile.path});
+
+    // Update the index with the processed document
+    await langChainService.updatePineConeIndex(ServiceConfig.indexName, [doc]);
+  }
+
+  Future<String> extractTextFromPDF(File pdfFile) async {
+    // Implement PDF text extraction here
+    // You might need to use a package like `pdf_text` or `syncfusion_flutter_pdf`
+    // For this example, let's assume we have a function that does this
+    return await extractTextFromPDF(pdfFile);
   }
 
   //this function fetches documents from the pdf file
@@ -52,7 +61,7 @@ class IndexNotifier extends _$IndexNotifier {
   }
 
   //converts to pdf for fetchDocuments method to use
-  Future<String> convertPDFToTextAndSaveInDir() async {
+  convertPDFToTextAndSaveInDir() async {
     try {
       //pickPDFFile might be the main function
       //for now this function gets the pdf but without loading

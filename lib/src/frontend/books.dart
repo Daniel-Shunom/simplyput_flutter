@@ -80,14 +80,13 @@ class _BookState extends State<Book> {
 //VIA THE langchain_servica-implt function
 
 executeOperation(BuildContext context, WidgetRef ref) async {
-  List<int>? selectedFile = await readPDFFile();
+  File? selectedFile = await pickPDFFiles();
   if (selectedFile != null) {
     await ref
         .read(indexNotifierProvider.notifier)
-        .createAndUploadPineconeIndex();
+        .createAndUploadPineconeIndex(selectedFile);
   } else {
     if (context.mounted) {
-      // Show error
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("No PDF was selected")),
       );

@@ -52,33 +52,40 @@ Future<String> pickImage() async {
 //gets file as a document but doesnt open it
 //this might be the main fucntion later hopefully
 Future<File?> pickPDFFiles() async {
-  // Open the file
-  /*void openFile(PlatformFile file) {
-    // Set linuxByProcess to false and linuxUsegio to true
-    OpenFile.open(file.path!, linuxByProcess: false, linuxUseGio: true);
-  }*/
-
-  final FilePickerResult? pickedFile = await FilePicker.platform.pickFiles(
-      allowMultiple: true,
-      allowCompression: true,
+  try {
+    final FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['pdf'] /*allowedExtensions: ['pdf', 'txt']*/
-      );
+      allowedExtensions: ['pdf'],
+      allowMultiple: false,
+    );
 
-  if (pickedFile != null) {
-    final file = File(pickedFile.files.first.path!);
-    print(file.path);
-    //openFile(pickedFile.files.first);
-    return file;
+    if (result != null && result.files.isNotEmpty) {
+      final file = File(result.files.first.path!);
+      print('Selected file: ${file.path}');
+      return file;
+    } else {
+      print('No file selected');
+      return null;
+    }
+  } catch (e) {
+    print('Error picking file: $e');
+    return null;
   }
-
-  return null;
 }
 
+/// Reads the contents of a PDF file as bytes.
+/// Returns a [List<int>] containing the file bytes if successful, or null if an error occurred.
 Future<List<int>?> readPDFFile() async {
-  File? file = await pickPDFFiles();
-  if (file != null) {
-    return await file.readAsBytes();
+  try {
+    File? file = await pickPDFFiles();
+    if (file != null) {
+      final bytes = await file.readAsBytes();
+      print('File read successfully: ${bytes.length} bytes');
+      return bytes;
+    }
+    return null;
+  } catch (e) {
+    print('Error reading file: $e');
+    return null;
   }
-  return null;
 }

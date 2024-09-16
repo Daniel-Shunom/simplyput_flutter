@@ -117,38 +117,40 @@ class LangChainServiceImpl implements LangChainService {
   //also embedds the metadata and returns it for retrieval
   Future<void> updatePineConeIndex(
       String indexName, List<Document> docs) async {
-    print("retrieving pinecone index.....");
+    print("Retrieving Pinecone index...");
     final index = await client.describeIndex(indexName: indexName);
-    print("pinecone index retrieved: ${index.name}");
+    print("Pinecone index retrieved: ${index.name}");
 
     for (final doc in docs) {
-      print("processing document: ${doc.metadata['source']}");
+      print("Processing document: ${doc.metadata['source']}");
       final text = doc.pageContent;
 
-      //splits text into chunks for vectorization
       const textSplitter = RecursiveCharacterTextSplitter(chunkSize: 1000);
-
       final chunks = textSplitter.createDocuments([text]);
-      print("text split into ${chunks.length}");
+      print("Text split into ${chunks.length} chunks");
+
+      print("Embedding ${chunks.length} text chunks...");
+      final embeddingArrays = await embeddings.embedDocuments(chunks);
 
       print(
-          "calling google's generative AI embedding endpoint with ${chunks.length} text chunks to embed documents");
-
-      //maps the doc split chunks according to the number of items in the list (number of chunks)
-      final chunksMap = chunks
-          .map((e) => Document(
-              pageContent: e.pageContent.replaceAll(RegExp('/\n/g'), " "),
-              metadata: doc.metadata))
-          .toList();
-
-      //converts text (metadata) into embeddings
-      final embeddingArrays = await embeddings.embedDocuments(chunksMap);
-      print("finished embedding arrays");
-      print(
-          "Creating ${chunks.length} vectors array with id, values, and metadata....");
+          "Creating ${chunks.length} vectors with id, values, and metadata...");
+      final documents = chunks.asMap().entries.map((entry) {
+        final i = entry.key;
+        final chunk = entry.value;
+        return Document(
+          pageContent: chunk.pageContent,
+          metadata: {
+            ...doc.metadata,
+            'chunk': i,
+            'id': 'doc_${doc.metadata['source']}_chunk_$i',
+          },
+        );
+      }).toList();
 
       await langChainPinecone.addVectors(
-          vectors: embeddingArrays, documents: docs);
+        vectors: embeddingArrays,
+        documents: documents,
+      );
       print("Pinecone index updated with ${chunks.length} vectors");
     }
   }

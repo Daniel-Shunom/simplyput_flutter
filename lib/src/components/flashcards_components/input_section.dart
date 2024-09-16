@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'flashcard_provider.dart';
 
 class InputSection extends StatefulWidget {
