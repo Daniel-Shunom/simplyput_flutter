@@ -41,7 +41,7 @@ class IndexNotifier extends _$IndexNotifier {
   Future<String> extractTextFromPDF(File pdfFile) async {
     // Implement PDF text extraction here
     // You might need to use a package like `pdf_text` or `syncfusion_flutter_pdf`
-    // For this example, let's assume we have a function that does this
+    // For this example, let's assume we have a function that does this dot do dot
     return await extractTextFromPDF(pdfFile);
   }
 
